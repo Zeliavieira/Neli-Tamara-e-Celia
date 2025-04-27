@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz de Indicadores de Saúde</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #f0f8ff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .quiz-container {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .btn-container {
+      margin-top: 20px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .correct {
+      background-color: #28a745 !important;
+    }
+
+    .incorrect {
+      background-color: #dc3545 !important;
+    }
+
+    .correct-answer {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #28a745;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container" id="quiz">
+    <div id="question">Carregando pergunta...</div>
+    <div id="answer-buttons" class="btn-container"></div>
+    <div id="correct-answer" class="correct-answer"></div>
+    <button id="next-btn">Próxima</button>
+  </div>
+
+<script>
+const questions = [
+  { question: "1- Como saber se uma população está saudável?", answers: [
+    { text: "Analisando indicadores de saúde", correct: true },
+    { text: "Apenas observando as pessoas", correct: false },
+    { text: "Contando hospitais", correct: false },
+    { text: "Perguntando às famílias", correct: false }
+  ]},
+  { question: "2- Como o técnico de enfermagem pode contribuir para melhorar os indicadores de saúde?", answers: [
+    { text: "Realizando ações de promoção e prevenção à saúde", correct: true },
+    { text: "Ignorando os protocolos", correct: false },
+    { text: "Aplicando multas", correct: false },
+    { text: "Realizando apenas curativos", correct: false }
+  ]},
+  { question: "3- Quais são exemplos de indicadores de saúde?", answers: [
+    { text: "Taxa de mortalidade infantil, expectativa de vida, incidência de doenças", correct: true },
+    { text: "Número de escolas", correct: false },
+    { text: "Número de carros", correct: false },
+    { text: "Preço de medicamentos", correct: false }
+  ]},
+  { question: "4- Qual a importância dos indicadores de saúde na prática?", answers: [
+    { text: "Permitem avaliar políticas públicas e melhorar a saúde coletiva", correct: true },
+    { text: "Servem apenas para pesquisas acadêmicas", correct: false },
+    { text: "São apenas burocracia", correct: false },
+    { text: "Reduzem os custos hospitalares", correct: false }
+  ]},
+  { question: "5- O que é incidência?", answers: [
+    { text: "Número de casos novos de uma doença em um período", correct: true },
+    { text: "Total de pessoas curadas", correct: false },
+    { text: "Número de mortes", correct: false },
+    { text: "Quantidade de hospitais", correct: false }
+  ]},
+  { question: "6- O que são fatores de risco?", answers: [
+    { text: "Condições que aumentam a chance de desenvolver uma doença", correct: true },
+    { text: "Remédios para tratamento", correct: false },
+    { text: "Programas de saúde", correct: false },
+    { text: "Indicadores financeiros", correct: false }
+  ]},
+  { question: "7- Como os indicadores epidemiológicos ajudam no monitoramento de doenças?", answers: [
+    { text: "Identificando tendências e ajudando no planejamento de ações", correct: true },
+    { text: "Apenas documentando casos antigos", correct: false },
+    { text: "Diminuindo o número de hospitais", correct: false },
+    { text: "Aumentando a carga de trabalho", correct: false }
+  ]},
+  { question: "8- Como os dados sobre acesso aos serviços de saúde podem ser usados para reduzir desigualdades?", answers: [
+    { text: "Orientando políticas públicas para melhorar o acesso", correct: true },
+    { text: "Criando mais burocracia", correct: false },
+    { text: "Limitando atendimentos", correct: false },
+    { text: "Ignorando populações vulneráveis", correct: false }
+  ]},
+  { question: "9- O que é prevalência?", answers: [
+    { text: "Número total de casos de uma doença em um período", correct: true },
+    { text: "Apenas casos novos", correct: false },
+    { text: "Mortes recentes", correct: false },
+    { text: "Pacientes curados", correct: false }
+  ]},
+  { question: "10- Qual a função da vigilância epidemiológica?", answers: [
+    { text: "Detectar, monitorar e controlar doenças", correct: true },
+    { text: "Fechar hospitais", correct: false },
+    { text: "Armazenar vacinas", correct: false },
+    { text: "Administrar clínicas privadas", correct: false }
+  ]},
+  { question: "11- O que é mortalidade infantil?", answers: [
+    { text: "Número de mortes de crianças com menos de 1 ano", correct: true },
+    { text: "Número de crianças internadas", correct: false },
+    { text: "Número de partos", correct: false },
+    { text: "Número de vacinas aplicadas", correct: false }
+  ]},
+  { question: "12- O que é uma doença endêmica?", answers: [
+    { text: "Uma doença que ocorre regularmente em uma região", correct: true },
+    { text: "Uma doença rara", correct: false },
+    { text: "Uma doença global", correct: false },
+    { text: "Uma doença que pode ser erradicada", correct: false }
+  ]},
+  { question: "13- O que é uma epidemia?", answers: [
+    { text: "Quando há um aumento significativo de casos de uma doença", correct: true },
+    { text: "Quando uma doença é erradicada", correct: false },
+    { text: "Quando a doença é controlada", correct: false },
+    { text: "Quando a doença se torna endêmica", correct: false }
+  ]},
+  { question: "14- O que é uma pandemia?", answers: [
+    { text: "Quando uma doença se espalha globalmente", correct: true },
+    { text: "Quando uma doença é controlada em várias regiões", correct: false },
+    { text: "Quando uma doença é erradicada", correct: false },
+    { text: "Quando uma doença é considerada curada", correct: false }
+  ]},
+  { question: "15- O que é vigilância sanitária?", answers: [
+    { text: "Monitoramento e controle de produtos e serviços que possam afetar a saúde", correct: true },
+    { text: "Apenas a verificação de condições de hospitais", correct: false },
+    { text: "Controle de medicamentos", correct: false },
+    { text: "Fiscalização de médicos", correct: false }
+  ]},
+  { question: "16- O que são os serviços primários de saúde?", answers: [
+    { text: "Atendimentos básicos e preventivos à saúde", correct: true },
+    { text: "Atendimentos de urgência", correct: false },
+    { text: "Tratamentos especializados", correct: false },
+    { text: "Cirurgias", correct: false }
+  ]},
+  { question: "17- O que é o SUS?", answers: [
+    { text: "Sistema Único de Saúde", correct: true },
+    { text: "Serviço Universal de Saúde", correct: false },
+    { text: "Sistema Único de Serviço", correct: false },
+    { text: "Sistema Universal de Saúde", correct: false }
+  ]},
+  { question: "18- Como o SUS financia os serviços de saúde?", answers: [
+    { text: "Através de impostos e contribuições sociais", correct: true },
+    { text: "Com doações voluntárias", correct: false },
+    { text: "Através de campanhas de arrecadação", correct: false },
+    { text: "Por meio de fundos privados", correct: false }
+  ]},
+  { question: "19- O que é a Atenção Básica?", answers: [
+    { text: "Conjunto de ações de saúde realizadas na porta de entrada do sistema de saúde", correct: true },
+    { text: "Atendimentos hospitalares", correct: false },
+    { text: "Tratamentos especializados", correct: false },
+    { text: "Cuidados em clínicas particulares", correct: false }
+  ]},
+  { question: "20- O que é a Política Nacional de Atenção à Saúde?", answers: [
+    { text: "Conjunto de diretrizes e ações para melhorar a saúde pública", correct: true },
+    { text: "Lei que regulamenta os hospitais privados", correct: false },
+    { text: "Plano de saúde para trabalhadores", correct: false },
+    { text: "Sistema de fiscalização de médicos", correct: false }
+  ]},
+  { question: "21- O que são as doenças crônicas não transmissíveis?", answers: [
+    { text: "Doenças que não são causadas por infecções e que se prolongam por longo tempo", correct: true },
+    { text: "Doenças transmitidas por vírus", correct: false },
+    { text: "Doenças que têm cura rápida", correct: false },
+    { text: "Doenças agudas", correct: false }
+  ]},
+  { question: "22- Como as políticas de saúde podem combater as doenças crônicas?", answers: [
+    { text: "Promovendo hábitos saudáveis e acesso ao tratamento", correct: true },
+    { text: "Focando apenas em tratamentos paliativos", correct: false },
+    { text: "Desestimulando a atividade física", correct: false },
+    { text: "Apenas fornecendo medicamentos caros", correct: false }
+  ]},
+  { question: "23- O que é saúde coletiva?", answers: [
+    { text: "A saúde das populações em geral, com foco em prevenção", correct: true },
+    { text: "Saúde individual", correct: false },
+    { text: "Saúde apenas para grupos específicos", correct: false },
+    { text: "Saúde mental", correct: false }
+  ]},
+  { question: "24- Qual o papel do enfermeiro na promoção da saúde?", answers: [
+    { text: "Orientar a população sobre prevenção de doenças e cuidados", correct: true },
+    { text: "Realizar apenas atendimentos emergenciais", correct: false },
+    { text: "Vender medicamentos", correct: false },
+    { text: "Estudar apenas doenças", correct: false }
+  ]},
+  { question: "25- Como os hábitos alimentares influenciam na saúde?", answers: [
+    { text: "Podem prevenir doenças e melhorar a qualidade de vida", correct: true },
+    { text: "Não têm impacto significativo", correct: false },
+    { text: "Apenas influenciam na aparência", correct: false },
+    { text: "São irrelevantes para a saúde", correct: false }
+  ]}
+];
+
+let currentQuestionIndex = 0;
+
+const nextButton = document.getElementById('next-btn');
+const questionElement = document.getElementById('question');
+const answerButtons = document.getElementById('answer-buttons');
+const correctAnswerElement = document.getElementById('correct-answer');
+
+function showQuestion(questionIndex) {
+  const currentQuestion = questions[questionIndex];
+  questionElement.textContent = currentQuestion.question;
+
+  answerButtons.innerHTML = ''; // Limpa as respostas anteriores
+  currentQuestion.answers.forEach((answer, index) => {
+    const button = document.createElement('button');
+    button.textContent = answer.text;
+    button.classList.add('btn');
+    button.addEventListener('click', () => checkAnswer(answer));
+    answerButtons.appendChild(button);
+  });
+
+  nextButton.style.display = 'none'; // Esconde o botão "Próxima"
+}
+
+function checkAnswer(answer) {
+  if (answer.correct) {
+    correctAnswerElement.textContent = 'Resposta correta!';
+    correctAnswerElement.classList.add('correct');
+    correctAnswerElement.classList.remove('incorrect');
+  } else {
+    correctAnswerElement.textContent = 'Resposta errada. Tente novamente.';
+    correctAnswerElement.classList.add('incorrect');
+    correctAnswerElement.classList.remove('correct');
+  }
+
+  nextButton.style.display = 'inline'; // Exibe o botão "Próxima"
+}
+
+nextButton.addEventListener('click', () => {
+  if (currentQuestionIndex < questions.length - 1) {
+    currentQuestionIndex++;
+    showQuestion(currentQuestionIndex);
+    correctAnswerElement.textContent = ''; // Limpa a resposta correta/errada
+  } else {
+    alert('Você completou o quiz!');
+  }
+});
+
+showQuestion(currentQuestionIndex);
+</script>
+</body>
+</html>

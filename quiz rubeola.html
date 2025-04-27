@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre Rubéola e Síndrome da Rubéola Congênita</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result-container {
+            margin-top: 20px;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quiz sobre Rubéola e Síndrome da Rubéola Congênita</h1>
+    <div id="quiz-container">
+        <div id="question-container">
+            <!-- As questões serão carregadas aqui pelo JavaScript -->
+        </div>
+        <button id="submit-btn" onclick="submitQuiz()">Enviar Respostas</button>
+    </div>
+    <div id="result-container">
+        <!-- O resultado será exibido aqui -->
+    </div>
+    <script>
+       const questions = [
+    {
+        question: "Quem foi o primeiro a descrever a Rubéola?",
+        options: ["Dr. Robert Koch", "Médicos alemães no século XVIII", "Louis Pasteur", "Hans Christian Gram"],
+        answer: 1
+    },
+    {
+        question: "O que a Rubéola pode causar se contraída durante a gestação?",
+        options: ["Nenhuma consequência", "Malformações congênitas", "Infecção respiratória", "Câncer"],
+        answer: 1
+    },
+    {
+        question: "Quando foi introduzida a vacina tríplice viral?",
+        options: ["1990", "1992", "1985", "2000"],
+        answer: 1
+    },
+    {
+        question: "Qual é o agente etiológico da Rubéola?",
+        options: ["Bactéria", "Vírus", "Parasita", "Fungo"],
+        answer: 1
+    },
+    {
+        question: "O que a Síndrome da Rubéola Congênita pode causar ao feto?",
+        options: ["Doenças cardíacas", "Catarata", "Surdez", "Todas as alternativas"],
+        answer: 3
+    },
+    {
+        question: "Qual a principal forma de transmissão da Rubéola?",
+        options: ["Através de alimentos contaminados", "Por contato direto com secreções respiratórias", "Por contato com objetos", "Através de insetos"],
+        answer: 1
+    },
+    {
+        question: "Qual é o período de incubação da Rubéola?",
+        options: ["3 a 7 dias", "14 a 21 dias", "7 a 10 dias", "20 a 30 dias"],
+        answer: 1
+    },
+    {
+        question: "A vacina contra a Rubéola é indicada para mulheres em idade fértil?",
+        options: ["Sim", "Não", "Somente gestantes", "Somente idosos"],
+        answer: 0
+    },
+    {
+        question: "Em que ano a Região das Américas foi declarada livre da transmissão endêmica da Rubéola?",
+        options: ["2010", "2015", "2020", "2000"],
+        answer: 1
+    },
+    {
+        question: "Qual é a faixa etária mais afetada pela Rubéola?",
+        options: ["Adultos", "Crianças", "Idosos", "Recém-nascidos"],
+        answer: 1
+    },
+    {
+        question: "Qual é o principal risco para o feto quando a mãe é infectada pela Rubéola?",
+        options: ["Baixo peso ao nascer", "Malformações congênitas", "Dificuldades respiratórias", "Atraso no desenvolvimento"],
+        answer: 1
+    },
+    {
+        question: "A Rubéola é uma doença de notificação compulsória?",
+        options: ["Sim", "Não", "Somente quando grave", "Somente para adultos"],
+        answer: 0
+    },
+    {
+        question: "Em que região do corpo inicia o exantema da Rubéola?",
+        options: ["Braços", "Pescoço e face", "Pernas", "Abdômen"],
+        answer: 1
+    },
+    {
+        question: "O que é a Síndrome da Rubéola Congênita?",
+        options: ["Infecção pelo vírus após o nascimento", "Infecção pelo vírus durante a gestação", "Infecção por uma bactéria", "Infecção que não causa danos"],
+        answer: 1
+    },
+    {
+        question: "Quando a Rubéola é mais grave para o feto?",
+        options: ["Até 8 semanas de gestação", "A partir das 12 semanas", "Após as 20 semanas", "Em qualquer fase da gestação"],
+        answer: 0
+    },
+    {
+        question: "Qual é o período de transmissibilidade da Rubéola?",
+        options: ["3 a 5 dias antes e depois do exantema", "5 a 7 dias antes e depois do exantema", "10 a 15 dias antes e depois do exantema", "Somente enquanto a pessoa apresenta febre"],
+        answer: 1
+    },
+    {
+        question: "Como a Rubéola é diagnosticada?",
+        options: ["Por exame clínico apenas", "Através da detecção de anticorpos IgM no sangue", "Com uma radiografia", "Por exames de imagem"],
+        answer: 1
+    },
+    {
+        question: "O que deve ser feito para prevenir a Rubéola?",
+        options: ["Repouso", "Vacinação", "Uso de antibióticos", "Isolamento"],
+        answer: 1
+    },
+    {
+        question: "Qual é o risco da Rubéola após as 20 semanas de gestação?",
+        options: ["Não há risco", "O feto pode ter sequelas tardias", "A criança pode nascer com anomalias graves", "Não ocorre transmissão ao feto"],
+        answer: 1
+    },
+    {
+        question: "A Rubéola é um tipo de sarampo?",
+        options: ["Sim", "Não", "É a mesma doença", "Somente tem sintomas parecidos"],
+        answer: 3
+    },
+    {
+        question: "Qual é a vacina que protege contra a Rubéola?",
+        options: ["Vacina contra a gripe", "Vacina tríplice viral", "Vacina contra sarampo", "Vacina contra caxumba"],
+        answer: 1
+    },
+    {
+        question: "Quais complicações a Síndrome da Rubéola Congênita pode causar?",
+        options: ["Surdez e catarata", "Doenças cardíacas e atraso no desenvolvimento", "Baixo peso e erupções cutâneas", "Todas as alternativas anteriores"],
+        answer: 3
+    },
+    {
+        question: "Em que mês de gestação a Rubéola tem menor risco para o feto?",
+        options: ["Primeiro mês", "Segundo mês", "Terceiro mês", "Após o quarto mês"],
+        answer: 3
+    },
+    {
+        question: "Quando foi erradicada a varíola?",
+        options: ["1971", "1980", "1994", "2000"],
+        answer: 0
+    },
+    {
+        question: "Quantos casos de Rubéola ainda ocorrem no Brasil após a eliminação?",
+        options: ["Nenhum", "Alguns casos isolados", "Casos frequentes", "Casos em gestantes"],
+        answer: 1
+    },
+    {
+        question: "A Rubéola é uma doença que se transmite por:",
+        options: ["Contato com a pele", "Ar e secreções respiratórias", "Ingestão de alimentos contaminados", "Água contaminada"],
+        answer: 1
+    },
+    {
+        question: "O que caracteriza a Síndrome da Rubéola Congênita?",
+        options: ["Infecção no início da gestação com múltiplas malformações no feto", "Infecção no final da gestação sem efeitos para o feto", "Falta de sintomas na mãe", "Nenhuma das alternativas"],
+        answer: 0
+    },
+    {
+        question: "Quais são os principais sintomas da Rubéola?",
+        options: ["Febre, dor no corpo, exantema", "Tosse, espirros e cansaço", "Dor abdominal e diarreia", "Aumento de linfonodos e dificuldade para respirar"],
+        answer: 0
+    },
+    {
+        question: "Como a Rubéola é tratada?",
+        options: ["Com antibióticos", "Com antivirais", "Não existe tratamento específico", "Somente com repouso"],
+        answer: 2
+    },
+    {
+        question: "Quais sequelas a Rubéola pode deixar em crianças?",
+        options: ["Atraso no desenvolvimento e dificuldades cognitivas", "Surdez e problemas oculares", "Doenças cardíacas", "Todas as alternativas"],
+        answer: 3
+    },
+    {
+        question: "Quando a vacinação contra Rubéola é administrada?",
+        options: ["Somente em adultos", "A partir dos 12 meses de idade", "Aos 4 anos", "Somente durante a gravidez"],
+        answer: 1
+    },
+    {
+        question: "O que acontece se uma mulher grávida contrair Rubéola?",
+        options: ["Nada acontece", "Pode causar a síndrome da Rubéola Congênita", "A criança nascerá com imunidade", "A doença desaparece sozinha"],
+        answer: 1
+    },
+    {
+        question: "Qual é o risco de a Rubéola ser transmitida por uma pessoa infectada?",
+        options: ["Baixo", "Moderado", "Alto", "Muito alto"],
+        answer: 2
+    },
+    {
+        question: "Qual a importância da vacinação na eliminação da Rubéola?",
+        options: ["Ela previne a infecção e impede a transmissão", "Ela trata a doença", "Ela reduz os sintomas", "Ela impede a febre"],
+        answer: 0
+    },
+    {
+        question: "Onde começou a eliminação da Rubéola no mundo?",
+        options: ["Américas", "África", "Europa", "Ásia"],
+        answer: 0
+    },
+    {
+        question: "Como se chama a doença que a Rubéola pode causar no feto?",
+        options: ["Síndrome de Down", "Síndrome da Rubéola Congênita", "Síndrome de Cushing", "Síndrome de Edwards"],
+        answer: 1
+    },
+    {
+        question: "A Rubéola pode causar cegueira em crianças?",
+        options: ["Sim", "Não", "Somente se tratada tardiamente", "Somente em adultos"],
+        answer: 0
+    },
+    {
+        question: "Em que idade a criança deve receber a vacina contra Rubéola?",
+        options: ["Aos 6 meses", "Aos 12 meses", "Aos 18 meses", "Aos 2 anos"],
+        answer: 1
+    },
+    {
+        question: "A Rubéola é uma doença que causa imunidade permanente após infecção?",
+        options: ["Sim", "Não", "Depende da pessoa", "Imunidade parcial"],
+        answer: 0
+    },
+    {
+        question: "O que a Rubéola causa nas mulheres grávidas?",
+        options: ["Dor abdominal", "Febre", "Síndrome da Rubéola Congênita", "Exantema"],
+        answer: 2
+    },
+    {
+        question: "A vacina tríplice viral é para qual idade?",
+        options: ["Crianças até 5 anos", "Crianças a partir dos 12 meses", "Somente adolescentes", "Somente adultos"],
+        answer: 1
+    },
+    {
+        question: "A Rubéola pode ser transmitida por que tipo de secreção?",
+        options: ["Secreção nasal e saliva", "Secreção vaginal", "Secreção ocular", "Secreção urinária"],
+        answer: 0
+    },
+    {
+        question: "Qual é o maior benefício da vacinação contra a Rubéola?",
+        options: ["Imunização em massa", "Prevenção da infecção e complicações", "Diminuição da febre", "Melhora da qualidade de vida"],
+        answer: 1
+    },
+    {
+        question: "Quais são os principais sintomas da Síndrome da Rubéola Congênita?",
+        options: ["Malformações cardíacas e oculares", "Atraso no desenvolvimento motor", "Exantema e febre", "Perda de audição e atraso cognitivo"],
+        answer: 0
+    },
+    {
+        question: "A Rubéola pode causar sequelas a longo prazo?",
+        options: ["Sim", "Não", "Somente se não for tratada", "Somente em idosos"],
+        answer: 0
+    }
+];
+
+
+        const questionContainer = document.getElementById('question-container');
+        const resultContainer = document.getElementById('result-container');
+        const submitBtn = document.getElementById('submit-btn');
+        let userAnswers = [];
+
+        function loadQuestions() {
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question');
+
+                const questionTitle = document.createElement('h3');
+                questionTitle.textContent = question.question;
+
+                const optionsList = document.createElement('ul');
+                question.options.forEach((option, i) => {
+                    const optionItem = document.createElement('li');
+                    const optionInput = document.createElement('input');
+                    optionInput.type = 'radio';
+                    optionInput.name = `question${index}`;
+                    optionInput.value = i;
+                    optionItem.appendChild(optionInput);
+                    optionItem.appendChild(document.createTextNode(option));
+                    optionsList.appendChild(optionItem);
+                });
+
+                questionDiv.appendChild(questionTitle);
+                questionDiv.appendChild(optionsList);
+                questionContainer.appendChild(questionDiv);
+            });
+        }
+
+        function submitQuiz() {
+            let correctAnswers = 0;
+            let totalAnswers = 0;
+
+            questions.forEach((question, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+                if (selectedOption) {
+                    totalAnswers++;
+                    const userAnswer = parseInt(selectedOption.value);
+                    userAnswers.push(userAnswer);
+
+                    if (userAnswer === question.answer) {
+                        correctAnswers++;
+                    }
+                }
+            });
+
+            const score = `${correctAnswers} de ${totalAnswers} respostas corretas.`;
+
+            const resultMessage = correctAnswers === questions.length
+                ? 'Parabéns! Você acertou todas as questões!'
+                : 'Tente novamente!';
+
+            resultContainer.innerHTML = `
+                <h3>Resultado: ${score}</h3>
+                <p>${resultMessage}</p>
+            `;
+        }
+
+        loadQuestions();
+    </script>
+</body>
+</html>

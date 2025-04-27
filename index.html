@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Caderno de Registros de Enfermagem</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to right, #ffe4ec, #e0c3fc);
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #a855f7;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .caderno {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    label {
+      font-weight: bold;
+      margin-top: 15px;
+      display: block;
+      color: #6b21a8;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #a855f7;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #9333ea;
+    }
+    .registro-item {
+      background: #f3e8ff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 12px;
+      position: relative;
+      white-space: pre-line;
+    }
+    .registro-item img {
+      max-width: 100px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 2px solid #d8b4fe;
+    }
+    .botoes {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<h1>SAI (Saúde do Aduto e do Idoso)</h1>
+<h2>📒 Caderno Digital de Enfermagem</h2>
+
+<div class="caderno">
+  <label for="dataHora">📅 Data e Hora:</label>
+  <input type="datetime-local" id="dataHora">
+
+  <label for="categoria">📚 Categoria:</label>
+  <select id="categoria">
+    <option value="Curativo">Curativo</option>
+    <option value="Administração de Medicamento">Administração de Medicamento</option>
+    <option value="Banho no Leito">Banho no Leito</option>
+    <option value="Outro">Outro</option>
+  </select>
+
+  <label for="procedimento">🩺 Procedimento Realizado:</label>
+  <textarea id="procedimento" placeholder="Descreva o que foi feito..."></textarea>
+
+  <label for="reacao">😊 Reação do Paciente:</label>
+  <textarea id="reacao" placeholder="Descreva a reação..."></textarea>
+
+  <label for="orientacao">📣 Orientações:</label>
+  <textarea id="orientacao" placeholder="Descreva as orientações..."></textarea>
+
+  <label for="profissional">👩‍⚕️ Nome do Profissional:</label>
+  <input type="text" id="profissional" placeholder="Ex: Técnica Zélia Silva">
+
+  <label for="coren">🔢 Número do COREN (opcional):</label>
+  <input type="text" id="coren" placeholder="Ex: COREN-BA 123456">
+
+  <label for="foto">📸 Foto (opcional):</label>
+  <input type="file" id="foto" accept="image/*">
+
+  <div class="botoes">
+    <button onclick="gerarRegistro()">Gerar Registro 📝</button>
+    <button onclick="salvarRegistros()">Salvar Todos 📥</button>
+  </div>
+
+  <div id="saidaRegistro">
+    <h2 style="color:#9333ea;">📝 Registros Gerados:</h2>
+  </div>
+</div>
+
+
+<a href="Doença respiratorias.html" target="_blank">
+    <button>Doenças respiratórias SAI</button>
+
+    <a href="DoençasrespiratoriasQUIZ.html" target="_blank">
+        <button>Doenças respiratórias quiz SAI</button>
+    
+        <a href="modeloderegistro.html" target="_blank">
+            <button>modelo de registro SAI</button>
+    
+            <a href="modeloderegistroHAS.html" target="_blank">
+                <button>modelo de registro HAS/SAI</button>
+    
+                <a href="quizdostermosrelacionados.html" target="_blank">
+                    <button>Quiz termos relacionados SAI</button>
+    
+                    <a href="SAE e DM" target="_blank">
+                        <button>jogo2 SAI</button>
+                    
+
+                        <a href="jogo dos termos.html" target="_blank">
+                            <button>Jogos dos termos SAI</button>
+            
+                            <a href="joso dos termos 02.html" target="_blank">
+                                <button>jogos do termos02 SAI</button>
+                            
+                                <a href="quiz rubeola.html" target="_blank">
+                                    <button>RUBEOLA/TAMARA</button>
+                                    
+                                    <a href="doenças de chaga.html" target="_blank">
+                                      <button>chagas/TAMARA</button>
+                                      
+                                      <a href="indicadores de saude.html" target="_blank">
+                                        <button>Indicadores /TAMARA</button>
+                                  
+                                        <a href="Celia.html" target="_blank">
+                                          <button>CELIA</button>
+
+<script>
+let registros = [];
+
+function gerarRegistro() {
+  const dataHora = document.getElementById('dataHora').value;
+  const categoria = document.getElementById('categoria').value;
+  const procedimento = document.getElementById('procedimento').value;
+  const reacao = document.getElementById('reacao').value;
+  const orientacao = document.getElementById('orientacao').value;
+  const profissional = document.getElementById('profissional').value;
+  const coren = document.getElementById('coren').value;
+  const fotoInput = document.getElementById('foto');
+
+  if (!dataHora || !procedimento || !profissional) {
+    alert('Preencha Data, Procedimento e Profissional.');
+    return;
+  }
+
+  const novoRegistro = {
+    data: new Date(dataHora).toLocaleDateString(),
+    hora: new Date(dataHora).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+    categoria,
+    procedimento,
+    reacao,
+    orientacao,
+    profissional,
+    coren,
+    foto: fotoInput.files[0] ? URL.createObjectURL(fotoInput.files[0]) : null
+  };
+
+  registros.push(novoRegistro);
+  mostrarRegistros();
+  limparCampos();
+}
+
+function mostrarRegistros() {
+  const saida = document.getElementById('saidaRegistro');
+  saida.innerHTML = '<h2 style="color:#9333ea;">📝 Registros Gerados:</h2>';
+
+  registros.forEach((reg, index) => {
+    const div = document.createElement('div');
+    div.className = 'registro-item';
+    div.innerHTML = `
+📅 ${reg.data} – ${reg.hora}
+📚 Categoria: ${reg.categoria}
+🩺 Procedimento: ${reg.procedimento}
+😊 Reação do Paciente: ${reg.reacao}
+📣 Orientações: ${reg.orientacao}
+👩‍⚕️ Profissional: ${reg.profissional} ${reg.coren ? '- ' + reg.coren : ''}
+    `;
+
+    if (reg.foto) {
+      const img = document.createElement('img');
+      img.src = reg.foto;
+      div.appendChild(img);
+    }
+
+    const btnCopiar = document.createElement('button');
+    btnCopiar.innerText = '📋 Copiar';
+    btnCopiar.onclick = () => copiarTexto(div.innerText);
+    div.appendChild(btnCopiar);
+
+    saida.appendChild(div);
+  });
+}
+
+function copiarTexto(texto) {
+  navigator.clipboard.writeText(texto)
+    .then(() => alert('Registro copiado com sucesso! 🎉'))
+    .catch(err => console.error('Erro ao copiar', err));
+}
+
+function salvarRegistros() {
+  if (registros.length === 0) {
+    alert('Nenhum registro para salvar.');
+    return;
+  }
+  let conteudo = '';
+  registros.forEach(reg => {
+    conteudo += `
+📅 ${reg.data} – ${reg.hora}
+📚 Categoria: ${reg.categoria}
+🩺 Procedimento: ${reg.procedimento}
+😊 Reação do Paciente: ${reg.reacao}
+📣 Orientações: ${reg.orientacao}
+👩‍⚕️ Profissional: ${reg.profissional} ${reg.coren ? '- ' + reg.coren : ''}
+------------------------------------
+`;
+  });
+
+  const blob = new Blob([conteudo], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'caderno_enfermagem.txt';
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+function limparCampos() {
+  document.getElementById('dataHora').value = '';
+  document.getElementById('categoria').value = 'Curativo';
+  document.getElementById('procedimento').value = '';
+  document.getElementById('reacao').value = '';
+  document.getElementById('orientacao').value = '';
+  document.getElementById('profissional').value = '';
+  document.getElementById('coren').value = '';
+  document.getElementById('foto').value = '';
+}
+</script>
+
+</body>
+</html>

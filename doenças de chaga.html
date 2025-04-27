@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz - Doença de Chagas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  .quiz-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  #options button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #d9d9d9;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #options button:hover {
+    background-color: #c0c0c0;
+  }
+  
+  #feedback {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  #next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  #next-btn:hover {
+    background-color: #45a049;
+  }
+  </style>
+<body>
+
+  <div class="quiz-container">
+    <h1>Quiz: Doença de Chagas</h1>
+    <div id="question-container">
+      <p id="question">Pergunta aqui</p>
+      <div id="options"></div>
+    </div>
+
+    <div id="feedback"></div>
+
+    <button id="next-btn">Próxima Pergunta</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>const questions = [
+    {
+      question: "Quem descobriu a doença de Chagas e em que ano?",
+      options: ["Carlos Chagas em 1909", "Oswaldo Cruz em 1910", "Albert Einstein em 1905"],
+      answer: "Carlos Chagas em 1909"
+    },
+    {
+      question: "Qual é o agente etiológico da doença de Chagas?",
+      options: ["Trypanosoma cruzi", "Plasmodium falciparum", "Bacillus anthracis"],
+      answer: "Trypanosoma cruzi"
+    },
+    {
+      question: "Como o Trypanosoma cruzi é transmitido para os seres humanos?",
+      options: ["Pela picada do mosquito", "Pela urina do barbeiro", "Pelas fezes do barbeiro"],
+      answer: "Pelas fezes do barbeiro"
+    },
+    {
+      question: "Qual é o vetor principal da doença de Chagas?",
+      options: ["Aedes aegypti", "Barbeiro (triatomíneo)", "Mosca Tsé-Tsé"],
+      answer: "Barbeiro (triatomíneo)"
+    },
+    {
+      question: "O que é o 'barbeiro'?",
+      options: ["Um vírus", "Um inseto hematófago", "Uma bactéria"],
+      answer: "Um inseto hematófago"
+    },
+    {
+      question: "Quais são os principais modos de transmissão da doença de Chagas além do vetor?",
+      options: ["Transfusão sanguínea, transplante de órgãos, transmissão congênita", "Água contaminada, alimentos contaminados, picada de cobra", "Contato com saliva de animais"],
+      answer: "Transfusão sanguínea, transplante de órgãos, transmissão congênita"
+    },
+    {
+      question: "O que acontece durante a fase aguda da doença de Chagas?",
+      options: ["É geralmente assintomática", "Tem sintomas leves que passam rapidamente", "Pode apresentar febre, inchaço no local da picada e inflamação dos gânglios linfáticos"],
+      answer: "Pode apresentar febre, inchaço no local da picada e inflamação dos gânglios linfáticos"
+    },
+    {
+      question: "Qual é o nome do sinal característico no olho durante a infecção aguda?",
+      options: ["Sinal de Romaña", "Sinal de Koplik", "Sinal de Chadwick"],
+      answer: "Sinal de Romaña"
+    },
+    {
+      question: "Após a fase aguda, o que acontece com a maioria dos infectados?",
+      options: ["Eles se recuperam totalmente", "A doença desaparece", "Entram na fase crônica assintomática"],
+      answer: "Entram na fase crônica assintomática"
+    },
+    {
+      question: "Quais órgãos são mais afetados na fase crônica da doença de Chagas?",
+      options: ["Pulmões e cérebro", "Coração e sistema digestivo", "Fígado e rins"],
+      answer: "Coração e sistema digestivo"
+    },
+    {
+      question: "A doença de Chagas pode causar problemas cardíacos como?",
+      options: ["Arritmias, insuficiência cardíaca e morte súbita", "Cefaleia e tontura", "Artrite e problemas respiratórios"],
+      answer: "Arritmias, insuficiência cardíaca e morte súbita"
+    },
+    {
+      question: "Quais sintomas digestivos podem ocorrer na doença de Chagas?",
+      options: ["Dificuldade para engolir e constipação grave", "Diarreia constante", "Vômito persistente"],
+      answer: "Dificuldade para engolir e constipação grave"
+    },
+    {
+      question: "O que é megaesôfago e megacólon na doença de Chagas?",
+      options: ["Doenças respiratórias", "Dilatação anormal do esôfago e do intestino grosso", "Inflamação das articulações"],
+      answer: "Dilatação anormal do esôfago e do intestino grosso"
+    },
+    {
+      question: "Como é feito o diagnóstico da fase aguda da doença de Chagas?",
+      options: ["Exame de fezes", "Exame de sangue para detectar o parasita", "Tomografia computadorizada"],
+      answer: "Exame de sangue para detectar o parasita"
+    },
+    {
+      question: "Como é feito o diagnóstico da fase crônica?",
+      options: ["Por exames sorológicos", "Por biópsia do fígado", "Pela análise do cabelo"],
+      answer: "Por exames sorológicos"
+    },
+    {
+      question: "Existe vacina para prevenir a doença de Chagas?",
+      options: ["Sim", "Não"],
+      answer: "Não"
+    },
+    {
+      question: "Quais medicamentos são usados para tratar a doença de Chagas?",
+      options: ["Benznidazol e nifurtimox", "Paracetamol e ibuprofeno", "Amoxicilina e azitromicina"],
+      answer: "Benznidazol e nifurtimox"
+    },
+    {
+      question: "O tratamento é mais eficaz em qual fase?",
+      options: ["Crônica", "Aguda"],
+      answer: "Aguda"
+    },
+    {
+      question: "A doença de Chagas é considerada um problema de saúde pública principalmente em qual região?",
+      options: ["Europa", "América Latina", "Ásia"],
+      answer: "América Latina"
+    },
+    {
+      question: "Qual medida é importante para prevenir a doença de Chagas?",
+      options: ["Uso de repelentes", "Controle do barbeiro e triagem de sangue doado", "Lavar bem as mãos"],
+      answer: "Controle do barbeiro e triagem de sangue doado"
+    },
+    {
+      question: "A doença de Chagas pode ser transmitida de mãe para filho?",
+      options: ["Sim", "Não"],
+      answer: "Sim"
+    },
+    {
+      question: "A transmissão oral da doença de Chagas pode ocorrer por?",
+      options: ["Contato com objetos", "Consumo de alimentos contaminados com fezes de barbeiro", "Ar contaminado"],
+      answer: "Consumo de alimentos contaminados com fezes de barbeiro"
+    },
+    {
+      question: "Em que alimentos geralmente há risco de transmissão oral?",
+      options: ["Carne assada", "Sucos e alimentos crus", "Arroz cozido"],
+      answer: "Sucos e alimentos crus"
+    },
+    {
+      question: "A doença de Chagas é contagiosa de pessoa para pessoa casualmente?",
+      options: ["Sim", "Não"],
+      answer: "Não"
+    },
+    {
+      question: "O nome científico do barbeiro é?",
+      options: ["Triatoma infestans", "Culex quinquefasciatus", "Aedes albopictus"],
+      answer: "Triatoma infestans"
+    },
+    {
+      question: "Qual ambiente favorece a proliferação do barbeiro?",
+      options: ["Áreas urbanas modernas", "Casas de taipa, com frestas", "Ambientes extremamente frios"],
+      answer: "Casas de taipa, com frestas"
+    },
+    {
+      question: "O controle do barbeiro envolve o quê?",
+      options: ["Uso de inseticidas e melhorias habitacionais", "Colocação de redes de pesca", "Colocar cortinas nas casas"],
+      answer: "Uso de inseticidas e melhorias habitacionais"
+    },
+    {
+      question: "Qual é o papel dos cães e gatos na transmissão da doença de Chagas?",
+      options: ["Eles não têm papel", "Podem ser reservatórios do Trypanosoma cruzi", "Eles curam a doença"],
+      answer: "Podem ser reservatórios do Trypanosoma cruzi"
+    },
+    {
+      question: "A doença de Chagas foi erradicada no Brasil?",
+      options: ["Sim", "Não"],
+      answer: "Não"
+    },
+    {
+      question: "A transfusão sanguínea sem testes adequados pode transmitir a doença de Chagas?",
+      options: ["Sim", "Não"],
+      answer: "Sim"
+    },
+    {
+      question: "Qual o sintoma cardíaco mais grave na fase crônica da doença?",
+      options: ["Infarto agudo", "Morte súbita por arritmia", "Angina"],
+      answer: "Morte súbita por arritmia"
+    },
+    {
+      question: "A fase crônica pode durar quantos anos?",
+      options: ["Meses", "Anos ou até a vida toda", "Dias"],
+      answer: "Anos ou até a vida toda"
+    },
+    {
+      question: "O que significa doença endêmica?",
+      options: ["Presente apenas em uma epidemia", "Presente regularmente em determinada região", "Erradicada em todo o mundo"],
+      answer: "Presente regularmente em determinada região"
+    },
+    {
+      question: "Barbeiros infectados eliminam o parasita em qual momento?",
+      options: ["Ao sugar sangue", "Ao depositar fezes no local da picada", "Ao voar"],
+      answer: "Ao depositar fezes no local da picada"
+    },
+    {
+      question: "Quais são sinais precoces da fase aguda?",
+      options: ["Febre prolongada, edema no rosto ou membros", "Tosse seca", "Dor de cabeça apenas"],
+      answer: "Febre prolongada, edema no rosto ou membros"
+    },
+    {
+      question: "A infecção pode ser detectada por PCR na fase aguda?",
+      options: ["Sim", "Não"],
+      answer: "Sim"
+    },
+    {
+      question: "Triatomíneos também podem se esconder em?",
+      options: ["Piscinas", "Telhados de palha e paredes rachadas", "Supermercados"],
+      answer: "Telhados de palha e paredes rachadas"
+    },
+    {
+      question: "Em qual fase a doença é assintomática em grande parte dos casos?",
+      options: ["Aguda", "Crônica indeterminada"],
+      answer: "Crônica indeterminada"
+    },
+    {
+      question: "O megaesôfago pode causar?",
+      options: ["Dificuldade para engolir alimentos", "Dor no joelho", "Visão turva"],
+      answer: "Dificuldade para engolir alimentos"
+    },
+    {
+      question: "Um dos principais exames de imagem para avaliar o coração chagásico é?",
+      options: ["Ultrassom abdominal", "Eletrocardiograma", "Radiografia de crânio"],
+      answer: "Eletrocardiograma"
+    },
+    {
+      question: "Quais medicamentos são utilizados para controlar arritmias na doença de Chagas?",
+      options: ["Antiarrítmicos", "Antibióticos", "Antidepressivos"],
+      answer: "Antiarrítmicos"
+    },
+    {
+      question: "A doença pode ser reativada em pacientes com qual condição?",
+      options: ["Diabetes", "Imunossupressão", "Hipertensão"],
+      answer: "Imunossupressão"
+    },
+    {
+      question: "Qual órgão pode ser afetado de forma grave em transplantados infectados?",
+      options: ["Fígado", "Coração", "Pele"],
+      answer: "Coração"
+    },
+    {
+      question: "O barbeiro se alimenta de sangue de?",
+      options: ["Apenas humanos", "Humanos e animais", "Somente insetos"],
+      answer: "Humanos e animais"
+    },
+    {
+      question: "Uma estratégia para controle é evitar?",
+      options: ["Casas limpas e ventiladas", "Acúmulo de entulho e materiais orgânicos perto das casas", "Água potável"],
+      answer: "Acúmulo de entulho e materiais orgânicos perto das casas"
+    },
+    {
+      question: "A Organização Mundial da Saúde considera a doença de Chagas uma?",
+      options: ["Doença negligenciada", "Doença erradicada", "Doença industrial"],
+      answer: "Doença negligenciada"
+    },
+    {
+      question: "O controle vetorial deve ser feito por quem?",
+      options: ["População leiga", "Equipes de saúde treinadas", "Crianças"],
+      answer: "Equipes de saúde treinadas"
+    },
+    {
+      question: "A doença de Chagas crônica é facilmente curada?",
+      options: ["Sim", "Não"],
+      answer: "Não"
+    }
+  ];
+  
+  let currentQuestionIndex = 0;
+  
+  const questionEl = document.getElementById('question');
+  const optionsEl = document.getElementById('options');
+  const feedbackEl = document.getElementById('feedback');
+  const nextBtn = document.getElementById('next-btn');
+  
+  function showQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    questionEl.textContent = currentQuestion.question;
+    optionsEl.innerHTML = "";
+  
+    currentQuestion.options.forEach(option => {
+      const button = document.createElement('button');
+      button.textContent = option;
+      button.onclick = () => selectAnswer(option);
+      optionsEl.appendChild(button);
+    });
+  
+    feedbackEl.textContent = "";
+    nextBtn.style.display = "none";
+  }
+  
+  function selectAnswer(selectedOption) {
+    const currentQuestion = questions[currentQuestionIndex];
+    if (selectedOption === currentQuestion.answer) {
+      feedbackEl.textContent = "✅ Resposta correta!";
+      feedbackEl.style.color = "green";
+    } else {
+      feedbackEl.textContent = "❌ Resposta errada!";
+      feedbackEl.style.color = "red";
+    }
+    nextBtn.style.display = "inline-block";
+  }
+  
+  nextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      showQuestion();
+    } else {
+      questionEl.textContent = "Fim do quiz! 🎉";
+      optionsEl.innerHTML = "";
+      feedbackEl.textContent = "";
+      nextBtn.style.display = "none";
+    }
+  });
+  
+  // Iniciar o quiz
+  showQuestion();
+  </script>
+</body>
+</html>

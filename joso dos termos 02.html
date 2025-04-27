@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo: Complete com o Termo Técnico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 60%;
+      margin-top: 10px;
+    }
+    button {
+      padding: 8px 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-verificar {
+      background-color: #4caf50;
+      color: white;
+    }
+    .btn-mostrar {
+      background-color: #2196f3;
+      color: white;
+    }
+    .resposta {
+      margin-top: 5px;
+      color: #800000;
+      font-weight: bold;
+    }
+    .correto {
+      border: 2px solid green;
+    }
+    .incorreto {
+      border: 2px solid red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Complete com o Termo Técnico</h1>
+  <p><em>Leia a descrição e digite o termo técnico correspondente. Se não souber, clique em "Mostrar Resposta".</em></p>
+
+  <!-- Termos solicitados -->
+  <div class="card">
+    <p>Sangue depositado sobre a pele causando mancha escura.</p>
+    <input type="text" data-resposta="equimose" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Equimose</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Vermelhidão na pele.</p>
+    <input type="text" data-resposta="eritema" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Eritema</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Cansaço extremo.</p>
+    <input type="text" data-resposta="astenia" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Astenia</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Acúmulo de gases no intestino.</p>
+    <input type="text" data-resposta="meteorismo" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Meteorismo</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Espessura de pus.</p>
+    <input type="text" data-resposta="pus espesso" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Pus espesso</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Algo muito fraco e delgado.</p>
+    <input type="text" data-resposta="fino" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Fino</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Pequena abertura longe do dinal em fenda na superfície do corpo.</p>
+    <input type="text" data-resposta="fissura" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Fissura</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Inflamação de uma veia.</p>
+    <input type="text" data-resposta="flebite" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Flebite</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Pequena bolha cheia de líquido.</p>
+    <input type="text" data-resposta="vesícula" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Vesícula</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Mau hálito.</p>
+    <input type="text" data-resposta="halitose" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Halitose</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Acúmulo de sangue em um órgão ou tecido após hemorragia.</p>
+    <input type="text" data-resposta="hematoma" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Hematoma</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Presença de sangue na urina.</p>
+    <input type="text" data-resposta="hematúria" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Hematúria</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Sangramento nos vasos sanguíneos.</p>
+    <input type="text" data-resposta="hemorragia" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Hemorragia</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Degeneração do fígado causada por infecção, medicamentos ou álcool.</p>
+    <input type="text" data-resposta="hepatite" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Hepatite</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Com avermelhada da pele.</p>
+    <input type="text" data-resposta="eritema" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Eritema</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Excesso de glicose no sangue.</p>
+    <input type="text" data-resposta="hiperglicemia" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Hiperglicemia</strong></div>
+  </div>
+
+  <div class="card">
+    <p>Corte ou abertura relativa ao interior de uma veia.</p>
+    <input type="text" data-resposta="hematoma" placeholder="Digite o termo técnico">
+    <button class="btn-mostrar">Mostrar Resposta</button>
+    <div class="resposta" style="display:none;">Termo: <strong>Hematoma</strong></div>
+  </div>
+
+  <button class="btn-verificar">Verificar Respostas</button>
+
+  <script>
+    document.querySelectorAll('.btn-mostrar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const resposta = btn.nextElementSibling;
+        resposta.style.display = 'block';
+      });
+    });
+
+    document.querySelector('.btn-verificar').addEventListener('click', () => {
+      let tudoCerto = true;
+      document.querySelectorAll('input').forEach(input => {
+        const certo = input.dataset.resposta.trim().toLowerCase();
+        const valor = input.value.trim().toLowerCase();
+        if (valor === certo) {
+          input.classList.add('correto');
+          input.classList.remove('incorreto');
+        } else {
+          input.classList.add('incorreto');
+          input.classList.remove('correto');
+          tudoCerto = false;
+        }
+      });
+
+      if (tudoCerto) {
+        alert("Parabéns! Você acertou tudo!");
+      } else {
+        alert("Revise suas respostas.");
+      }
+    });
+  </script>
+
+</body>
+</html>
+
